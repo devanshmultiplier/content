@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route,Navigate } from "react-router-dom";
 // import ProgressBar from "./components/ProgressBar"; // Import ProgressBar
 import CampaignPage from "./components/CampaignPage";
 import Dashboard from "./components/Dashboard";
@@ -21,6 +21,7 @@ const App = () => {
             <>
               {/* <ProgressBar /> */}
               <Routes>
+                <Route path="/" element={<Navigate to="/login" replace />} />
                 <Route path="/campaignPage" element={<CampaignPage />} />
                 <Route path="/HCPDashboard" element={<HCPDashboard />} />
                 <Route path="/cohortSelection" element={<CohortSelection />} />
