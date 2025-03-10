@@ -1,8 +1,8 @@
-import { useLocation,useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 // import { useEffect, useState } from "react";
 
 const ProgressBar = () => {
-  const location = useLocation(); 
+  const location = useLocation();
   const navigate = useNavigate()
 
   // Define the steps/pages in order
@@ -18,12 +18,12 @@ const ProgressBar = () => {
 
   const stepNames = {
     "/campaignPage": "Define Campaign",
-    "/HCPDashboard": "HCP List",
+    "/HCPDashboard": "HCP Database",
     "/cohortSelection": "Define Cohort",
-    "/generateContent": "Content Generation",
-    "/selectTemplate": "Templates",
-    "/contentReview": "Content Review",
-    "/dashboard": "Dashboard"
+    "/generateContent": "Generate Content",
+    "/selectTemplate": "Define Template",
+    "/contentReview": "Review Content",
+    "/dashboard": "Analytics"
 
   }
 
@@ -31,14 +31,14 @@ const ProgressBar = () => {
   if (location.pathname === "/login") return null;
 
   // Track the current step based on the URL
-  const currentStep = steps.indexOf(location.pathname) + 1; 
+  const currentStep = steps.indexOf(location.pathname) + 1;
   const totalSteps = steps.length;
 
-  const progress = (currentStep/totalSteps)*100
+  const progress = (currentStep / totalSteps) * 100
 
   const adjustedProgress = progress < 100 ? progress - 4 : progress;
 
- 
+
   return (
     <div className="w-full bg-gray-200 rounded-full h-2.5 mb-8 mt-8 relative">
       <div
@@ -52,11 +52,10 @@ const ProgressBar = () => {
       {/* Progress Steps */}
       <ul className="flex justify-between text-sm mt-2 px-8 ">
         {steps.map((step, index) => (
-          <span key={step} 
-          onClick={()=>navigate(step)}
-          className={`cursor-pointer transition-all duration-200 hover:text-lg ${
-            index + 1 === currentStep ? "font-bold text-black" : "text-gray-600"
-          }`}>
+          <span key={step}
+            onClick={() => navigate(step)}
+            className={`cursor-pointer transition-all duration-200 hover:text-lg ${index + 1 === currentStep ? "font-bold text-black" : "text-gray-600"
+              }`}>
             {stepNames[step]} {/* Display Name Instead of Path */}
           </span>
         ))}
